@@ -1,0 +1,14 @@
+#map {
+    height: 400px;
+    margin: 3em;
+    background-color: rgb(217, 252, 255);
+}
+
+#map::before {
+    content: 'please wait...';
+    font-size: 4em;
+    text-align: center;
+    width: 95%;
+    position: fixed;
+    margin-top: 2em;
+}
