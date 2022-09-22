@@ -1,4 +1,3 @@
-// map object
 const myMap = {
     coordinates: [],
     businesses: [],
@@ -19,7 +18,7 @@ const myMap = {
         const marker = L.marker(this.coordinates)
         marker
             .addTo(this.map)
-            .bindPopup('<p1><b>You are here</b><br></p1>')
+            .bindPopup('<p1><b>Current Location</b><br></p1>')
             .openPopup()
     },
 
@@ -28,18 +27,26 @@ const myMap = {
 // get foursquare businesses
 // process foursquare array
 // event handlers
-// window load
-// business button
+
+window.onload = async () => {
+    const coordinates = await getCoordinates()
+    console.log(coordinates)
+    myMap.coordinates = coordinates
+    myMap.buildMap()
+}
+
 document.getElementById('submit').addEventListener('click', async (event) => {
     event.preventDefault()
     let business = document.getElementById('business').value
     console.log(business)
 })
 
-// get coordinates
 async function getCoordinates() {
     const pos = await new Promise((resolve, reject) => {
         navigator.geolocation.getCoordinates(resolve, reject);
     });
     return [pos.coordinates.latitude, pos.coordinates.longitude]
 }
+
+// fsq3JhtTX4Z23ggBPMJ19cOSIKgKE0V7ALeA7Kw/iGTmio4=
+// ITE5AZW032LN1O4N3CFH1OQICSZC0FDVCQTY3LPYILVPOA0F
