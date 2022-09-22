@@ -1,14 +1,18 @@
 #map {
     height: 400px;
     margin: 3em;
-    background-color: rgb(217, 252, 255);
+    background-color: rgb(232, 242, 255);
 }
 
 #map::before {
-    content: 'please wait...';
+    content: 'loading...';
     font-size: 4em;
     text-align: center;
     width: 95%;
     position: fixed;
     margin-top: 2em;
+}
+
+.leaflet-popup-content-wrapper {
+    width: 100%;
 }

@@ -11,25 +11,26 @@ const myMap = {
     buildMap() {
         this.map = L.map('map', {
             center: this.coordinates,
-            zoom 12,
+            zoom: 11,
         });
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             minZoom: '15',
         }).addTo(this.map)
 
         const marker = L.marker(this.coordinates)
         marker
             .addTo(this.map)
-            .bindPopup('<p1><b>Current Location</b><br></p1>')
+            .bindPopup('<p1><b>You are here</b><br></p1>')
             .openPopup()
     },
 
     addMarkers() {
         for (var i = 0; i < this.businesses.length; i++) {
             this.markers = L.marker([
-                this.businesses[i].let,
+                this.businesses[i].lat,
                 this.businesses[i].long,
             ])
                 .bindPopup(`<p1>${this.businesses[i].name}</p1>`)
@@ -37,7 +38,6 @@ const myMap = {
         }
     },
 }
-// get foursquare businesses
 
 async function getFoursquare(business) {
     const options = {
@@ -61,14 +61,13 @@ function processBusinesses(data) {
     let businesses = data.map((element) => {
         let location = {
             name: element.name,
-            lat: element.geocodes.main.latitude
+            lat: element.geocodes.main.latitude,
+            long: element.geocodes.main.longitude
         };
         return location
     })
     return businesses
 }
-
-// event handlers
 
 window.onload = async () => {
     const coords = await getCoords()
