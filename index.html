@@ -6,10 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Map</title>
+    <script src="app.js" defer></script>
+    <style>
+        #map {
+            height: 400px;
+            background-color: #ccc;
+        }
+    </style>
 </head>
 
 <body>
-
+    <form>
+        <select id="business">
+            <option value="coffee">Coffee Shops</option>
+            <option value="restaurant">Restaurants</option>
+            <option value="hotel">Hotels</option>
+            <option value="market">Markets</option>
+        </select>
+        <button id="submit">Submit</button>
+    </form>
+    <div id="map"></div>
 </body>
 
 </html>
