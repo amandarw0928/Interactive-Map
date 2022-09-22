@@ -11,7 +11,7 @@ const myMap = {
     buildMap() {
         this.map = L.map('map', {
             center: this.coordinates,
-            zoom: 11,
+            zoom: 8,
         });
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -68,6 +68,19 @@ function processBusinesses(data) {
     })
     return businesses
 }
+
+const options = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: 'fsq3JhtTX4Z23ggBPMJ19cOSIKgKE0V7ALeA7Kw/iGTmio4='
+    }
+};
+
+fetch(`https://cors-anywhere.herokuapp.com/https://api.foursquare.com/v3/places/search?&query=coffee&limit=5&ll=41.8781%2C-87.6298`, options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
 
 window.onload = async () => {
     const coords = await getCoords()
